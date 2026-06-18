@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Undangan Ulang Tahun Aurel ke-7</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<style>
+  :root{
+    --blue:#a8e1ff; --yellow:#ffe27a; --pink:#ffb6d5; --pink-deep:#ff7eb6;
+    --blue-deep:#3aaee0; --cream:#fff8ee;
+  }
+  *{scroll-behavior:smooth}
+  body{
+    font-family:'Fredoka', sans-serif;
+    background: linear-gradient(180deg,#fff8ee 0%,#e8f6ff 50%,#ffe9f3 100%);
+    color:#3b2a4a;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display-font{font-family:'Pacifico', cursive; color:#ff5fa2;}
+  .btn-cute{
+    background:linear-gradient(135deg,var(--pink-deep),#ffb454);
+    color:#fff; border:none; border-radius:999px; padding:.8rem 2rem;
+    font-weight:600; box-shadow:0 8px 20px rgba(255,126,182,.4);
+    transition:transform .2s;
+  }
+  .btn-cute:hover{transform:translateY(-3px); color:#fff;}
+  .card-cute{
+    background:#fff; border-radius:30px; border:none;
+    box-shadow:0 15px 40px rgba(58,174,224,.15);
+  }
+  /* Cover */
+  #cover{
+    position:fixed; inset:0; z-index:9999;
+    background:linear-gradient(135deg,#a8e1ff,#ffb6d5);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; padding:2rem; text-align:center;
+    transition:opacity .8s, transform .8s;
+  }
+  #cover.hidden{opacity:0; transform:translateY(-100%); pointer-events:none;}
+  #cover h1{font-size:clamp(2.5rem,8vw,5rem); color:#fff; text-shadow:0 4px 0 #ff7eb6;}
+  .photo-frame{
+    width:180px;height:180px;border-radius:50%;
+    border:8px solid #fff; box-shadow:0 10px 30px rgba(0,0,0,.15);
+    background:url('https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&q=80') center/cover;
+    margin:1rem auto;
+  }
+  /* Balloons */
+  .balloon{
+    position:fixed; bottom:-150px; width:50px; height:65px;
+    border-radius:50%; opacity:.75; z-index:1; pointer-events:none;
+    animation:float 12s linear infinite;
+  }
+  .balloon::after{
+    content:''; position:absolute; bottom:-40px; left:50%;
+    width:1px; height:40px; background:#aaa;
+  }
+  @keyframes float{
+    0%{transform:translateY(0) rotate(0)}
+    100%{transform:translateY(-120vh) rotate(20deg)}
+  }
+  /* Hero */
+  .hero{
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:4rem 1rem; position:relative;
+  }
+  .hero h1{font-size:clamp(3rem,9vw,6rem); line-height:1; margin-bottom:1rem;}
+  .age-badge{
+    display:inline-block; background:var(--yellow); color:#ff5fa2;
+    padding:.5rem 1.5rem; border-radius:999px; font-weight:700;
+    font-size:1.2rem; box-shadow:0 6px 0 #ffce3a;
+  }
+  /* Countdown */
+  .count-box{
+    background:linear-gradient(135deg,#fff,#fff5fb);
+    border-radius:20px; padding:1rem .5rem; min-width:80px;
+    box-shadow:0 8px 20px rgba(255,126,182,.2);
+  }
+  .count-box .num{font-size:2.2rem; font-weight:700; color:#ff5fa2; line-height:1;}
+  .count-box .lbl{font-size:.8rem; color:#888; text-transform:uppercase;}
+  /* Sections */
+  section{padding:5rem 1rem; position:relative; z-index:2;}
+  .section-title{text-align:center; margin-bottom:3rem;}
+  .section-title h2{font-size:clamp(2rem,5vw,3rem);}
+  /* Gallery */
+  .gallery img{
+    width:100%; aspect-ratio:1; object-fit:cover;
+    border-radius:20px; transition:transform .4s, box-shadow .4s;
+    cursor:pointer;
+  }
+  .gallery img:hover{transform:scale(1.05) rotate(-2deg); box-shadow:0 15px 30px rgba(0,0,0,.2);}
+  /* Rundown */
+  .rundown-item{
+    background:#fff; border-radius:20px; padding:1.2rem 1.5rem;
+    margin-bottom:1rem; display:flex; align-items:center; gap:1rem;
+    box-shadow:0 6px 18px rgba(58,174,224,.15);
+    border-left:6px solid var(--pink-deep);
+  }
+  .rundown-item .ico{
+    width:50px;height:50px; border-radius:50%;
+    background:linear-gradient(135deg,#a8e1ff,#ffb6d5);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff; font-size:1.3rem; flex-shrink:0;
+  }
+  /* Forms */
+  .form-control, .form-select{
+    border-radius:15px; border:2px solid #ffe0ef; padding:.7rem 1rem;
+  }
+  .form-control:focus{border-color:var(--pink-deep); box-shadow:0 0 0 .25rem rgba(255,126,182,.25);}
+  /* Wishes */
+  .wish-item{
+    background:#fff8ee; border-radius:18px; padding:1rem 1.2rem;
+    margin-bottom:.8rem; border-left:5px solid var(--yellow);
+    animation:fadeIn .5s;
+  }
+  .wish-item .name{font-weight:700; color:#ff5fa2;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  /* Music */
+  #musicBtn{
+    position:fixed; bottom:20px; right:20px; z-index:1000;
+    width:55px;height:55px;border-radius:50%; border:none;
+    background:linear-gradient(135deg,var(--pink-deep),var(--blue-deep));
+    color:#fff; font-size:1.3rem; box-shadow:0 8px 20px rgba(0,0,0,.2);
+    animation:spin 4s linear infinite paused;
+  }
+  #musicBtn.playing{animation-play-state:running;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  footer{
+    background:linear-gradient(135deg,#ff7eb6,#3aaee0);
+    color:#fff; text-align:center; padding:3rem 1rem;
+  }
+  footer h3{color:#fff; text-shadow:0 3px 0 rgba(0,0,0,.1);}
+  /* Confetti canvas */
+  #confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:5;}
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div id="cover">
+  <div class="photo-frame"></div>
+  <p style="color:#fff; font-size:1.1rem; margin:0;">Undangan Ulang Tahun</p>
+  <h1>Aurel's 7th Birthday</h1>
+  <p style="color:#fff; max-width:400px;">Halo! Kamu diundang ke pesta ulang tahun yang super seru 🎉</p>
+  <button class="btn btn-cute mt-3" onclick="openInvitation()">
+    <i class="fas fa-envelope-open me-2"></i>Buka Undangan
+  </button>
+</div>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Balloons -->
+<div id="balloons"></div>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div data-aos="zoom-in">
+    <p class="display-font" style="font-size:1.5rem; color:#3aaee0;">You're Invited!</p>
+    <h1>Aurel</h1>
+    <div class="photo-frame"></div>
+    <span class="age-badge">🎂 Merayakan Usia ke-7</span>
+    <p class="mt-4 mx-auto" style="max-width:500px;">
+      Dengan penuh suka cita, kami mengundang Anda untuk hadir di pesta ulang tahun kami yang ke-7!
+    </p>
+  </div>
+</section>
+
+<!-- Countdown -->
+<section style="background:rgba(255,255,255,.5);" data-aos="fade-up">
+  <div class="section-title"><h2>Hitung Mundur 🎈</h2></div>
+  <div class="d-flex justify-content-center gap-2 gap-md-3 flex-wrap">
+    <div class="count-box"><div class="num" id="d">0</div><div class="lbl">Hari</div></div>
+    <div class="count-box"><div class="num" id="h">0</div><div class="lbl">Jam</div></div>
+    <div class="count-box"><div class="num" id="m">0</div><div class="lbl">Menit</div></div>
+    <div class="count-box"><div class="num" id="s">0</div><div class="lbl">Detik</div></div>
+  </div>
+</section>
+
+<!-- Detail -->
+<section data-aos="fade-up">
+  <div class="section-title"><h2>Detail Acara 🎉</h2></div>
+  <div class="container">
+    <div class="card card-cute mx-auto p-4 p-md-5" style="max-width:600px;">
+      <div class="row text-center g-4">
+        <div class="col-6"><i class="fas fa-birthday-cake fa-2x text-warning mb-2"></i><h5>Pesta Aurel ke-7</h5></div>
+        <div class="col-6"><i class="fas fa-calendar-day fa-2x text-info mb-2"></i><h5>20 Juli 2026</h5></div>
+        <div class="col-6"><i class="fas fa-clock fa-2x text-danger mb-2"></i><h5>10.00 WIB</h5></div>
+        <div class="col-6"><i class="fas fa-map-marker-alt fa-2x text-success mb-2"></i><h5>Bandung</h5></div>
+        <div class="col-12"><span class="badge bg-warning text-dark p-2">Dress Code: Colorful 🌈</span></div>
+      </div>
+      <a href="https://maps.google.com/?q=Bandung" target="_blank" class="btn btn-cute mt-4 mx-auto">
+        <i class="fas fa-location-dot me-2"></i>Lihat Lokasi
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section style="background:rgba(255,255,255,.5);" data-aos="fade-up">
+  <div class="section-title"><h2>Galeri Foto 📸</h2></div>
+  <div class="container">
+    <div class="row g-3 gallery">
+      <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=500&q=80"/></div>
+      <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&q=80"/></div>
+      <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=500&q=80"/></div>
+      <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&q=80"/></div>
+      <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?w=500&q=80"/></div>
+      <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1502943693086-33b5b1cfdf2f?w=500&q=80"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- Rundown -->
+<section data-aos="fade-up">
+  <div class="section-title"><h2>Rundown Acara ⏰</h2></div>
+  <div class="container" style="max-width:600px;">
+    <div class="rundown-item"><div class="ico"><i class="fas fa-user-check"></i></div><div><strong>10.00</strong> — Registrasi Tamu</div></div>
+    <div class="rundown-item"><div class="ico"><i class="fas fa-gamepad"></i></div><div><strong>10.30</strong> — Games Seru</div></div>
+    <div class="rundown-item"><div class="ico"><i class="fas fa-birthday-cake"></i></div><div><strong>11.30</strong> — Potong Kue</div></div>
+    <div class="rundown-item"><div class="ico"><i class="fas fa-utensils"></i></div><div><strong>12.00</strong> — Makan Bersama</div></div>
+    <div class="rundown-item"><div class="ico"><i class="fas fa-camera"></i></div><div><strong>13.00</strong> — Foto Bersama</div></div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section style="background:rgba(255,255,255,.5);" data-aos="fade-up">
+  <div class="section-title"><h2>RSVP 💌</h2></div>
+  <div class="container" style="max-width:500px;">
+    <form class="card card-cute p-4" onsubmit="submitRSVP(event)">
+      <input class="form-control mb-3" placeholder="Nama Kamu" required id="rsvpName"/>
+      <input type="number" min="1" class="form-control mb-3" placeholder="Jumlah Tamu" required id="rsvpQty"/>
+      <select class="form-select mb-3" id="rsvpStatus" required>
+        <option value="">Konfirmasi Kehadiran</option>
+        <option>Hadir 🎉</option>
+        <option>Tidak Hadir 😢</option>
+      </select>
+      <button class="btn btn-cute" type="submit">Kirim RSVP</button>
+    </form>
+  </div>
+</section>
+
+<!-- Wishes -->
+<section data-aos="fade-up">
+  <div class="section-title"><h2>Ucapan & Doa 💖</h2></div>
+  <div class="container" style="max-width:600px;">
+    <form class="card card-cute p-4 mb-4" onsubmit="addWish(event)">
+      <input class="form-control mb-3" placeholder="Nama" required id="wishName"/>
+      <textarea class="form-control mb-3" rows="3" placeholder="Tulis ucapan & doa..." required id="wishMsg"></textarea>
+      <button class="btn btn-cute" type="submit">Kirim Ucapan</button>
+    </form>
+    <div id="wishList">
+      <div class="wish-item"><div class="name">Tante Lisa</div><div>Selamat ulang tahun Aurel sayang! Sehat & ceria selalu 🎂</div></div>
+      <div class="wish-item"><div class="name">Om Budi</div><div>Happy birthday! Semoga jadi anak pintar dan baik hati 🌟</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <h3>Terima Kasih 💕</h3>
+  <p class="mb-1">Atas kehadiran dan doa restu Anda.</p>
+  <p class="mb-3"><strong>Bapak Andi & Ibu Rina</strong></p>
+  <small>© 2026 Aurel's Birthday • Made with ❤️</small>
+</footer>
+
+<button id="musicBtn" onclick="toggleMusic()"><i class="fas fa-music"></i></button>
+<audio id="bgm" loop src="https://cdn.pixabay.com/audio/2022/10/30/audio_347111d654.mp3"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script>
+AOS.init({duration:800, once:true});
+
+// Balloons
+const colors=['#ff7eb6','#a8e1ff','#ffe27a','#b6e5a8','#d8b6ff'];
+const bc=document.getElementById('balloons');
+for(let i=0;i<12;i++){
+  const b=document.createElement('div');
+  b.className='balloon';
+  b.style.background=colors[i%colors.length];
+  b.style.left=Math.random()*100+'vw';
+  b.style.animationDelay=(Math.random()*12)+'s';
+  b.style.animationDuration=(8+Math.random()*8)+'s';
+  bc.appendChild(b);
+}
+
+// Countdown
+const target=new Date('2026-07-20T10:00:00+07:00').getTime();
+setInterval(()=>{
+  const t=target-Date.now();
+  if(t<0)return;
+  document.getElementById('d').textContent=Math.floor(t/86400000);
+  document.getElementById('h').textContent=Math.floor(t/3600000)%24;
+  document.getElementById('m').textContent=Math.floor(t/60000)%60;
+  document.getElementById('s').textContent=Math.floor(t/1000)%60;
+},1000);
+
+// Cover & confetti
+function openInvitation(){
+  document.getElementById('cover').classList.add('hidden');
+  confetti({particleCount:150, spread:90, origin:{y:.6}});
+  setTimeout(()=>{ playMusic(); }, 500);
+}
+
+// Music
+const bgm=document.getElementById('bgm');
+const mb=document.getElementById('musicBtn');
+let playing=false;
+function playMusic(){ bgm.play().then(()=>{playing=true; mb.classList.add('playing'); mb.innerHTML='<i class="fas fa-pause"></i>';}).catch(()=>{}); }
+function toggleMusic(){
+  if(playing){bgm.pause(); playing=false; mb.classList.remove('playing'); mb.innerHTML='<i class="fas fa-music"></i>';}
+  else{playMusic();}
+}
+
+// RSVP
+function submitRSVP(e){
+  e.preventDefault();
+  confetti({particleCount:100, spread:70});
+  alert('Terima kasih, '+document.getElementById('rsvpName').value+'! RSVP berhasil dikirim 🎉');
+  e.target.reset();
+}
+
+// Wishes
+const wishes=JSON.parse(localStorage.getItem('wishes')||'[]');
+const list=document.getElementById('wishList');
+function renderWishes(){
+  wishes.forEach(w=>{
+    const d=document.createElement('div');
+    d.className='wish-item';
+    d.innerHTML=`<div class="name">${w.name}</div><div>${w.msg}</div>`;
+    list.prepend(d);
+  });
+}
+renderWishes();
+function addWish(e){
+  e.preventDefault();
+  const n=document.getElementById('wishName').value;
+  const m=document.getElementById('wishMsg').value;
+  const w={name:n,msg:m};
+  wishes.push(w);
+  localStorage.setItem('wishes',JSON.stringify(wishes));
+  const d=document.createElement('div');
+  d.className='wish-item';
+  d.innerHTML=`<div class="name">${n}</div><div>${m}</div>`;
+  list.prepend(d);
+  e.target.reset();
+  confetti({particleCount:50, spread:60});
+}
+</script>
+</body>
+</html>
