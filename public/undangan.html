@@ -205,7 +205,7 @@
   </div>
 </section>
 
-<!-- QR Code -->
+<!-- QR Code & Share -->
 <section data-aos="fade-up">
   <div class="section-title"><h2>Scan QR Code 📱</h2></div>
   <div class="container" style="max-width:400px;">
@@ -213,7 +213,11 @@
       <div class="qr-frame mb-3">
         <img id="qrImg" src="" alt="QR Code Undangan" />
       </div>
-      <p class="mb-0" style="color:#888; font-size:.95rem;">Pindai kode ini untuk melihat detail acara & RSVP langsung di ponselmu 🎉</p>
+      <p class="mb-3" style="color:#888; font-size:.95rem;">Pindai kode ini untuk melihat detail acara & RSVP langsung di ponselmu 🎉</p>
+      <button class="btn btn-cute" onclick="shareInvitation()">
+        <i class="fas fa-share-nodes me-2"></i>Bagikan Undangan
+      </button>
+      <div id="shareToast" class="mt-2 text-success fw-bold" style="opacity:0;transition:opacity .3s;font-size:.9rem;">✅ Link berhasil disalin!</div>
     </div>
   </div>
 </section>
@@ -298,6 +302,27 @@ AOS.init({duration:800, once:true});
 // QR Code
 const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(window.location.href);
 document.getElementById('qrImg').src = qrUrl;
+
+// Share Invitation
+function shareInvitation() {
+  const url = window.location.href;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => showShareToast());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showShareToast();
+  }
+}
+function showShareToast() {
+  const t = document.getElementById('shareToast');
+  t.style.opacity = '1';
+  setTimeout(() => { t.style.opacity = '0'; }, 2000);
+}
 
 // Balloons
 const colors=['#ff7eb6','#a8e1ff','#ffe27a','#b6e5a8','#d8b6ff'];
