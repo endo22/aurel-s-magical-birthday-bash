@@ -205,7 +205,7 @@
   </div>
 </section>
 
-<!-- QR Code -->
+<!-- QR Code & Share -->
 <section data-aos="fade-up">
   <div class="section-title"><h2>Scan QR Code 📱</h2></div>
   <div class="container" style="max-width:400px;">
@@ -213,7 +213,11 @@
       <div class="qr-frame mb-3">
         <img id="qrImg" src="" alt="QR Code Undangan" />
       </div>
-      <p class="mb-0" style="color:#888; font-size:.95rem;">Pindai kode ini untuk melihat detail acara & RSVP langsung di ponselmu 🎉</p>
+      <p class="mb-3" style="color:#888; font-size:.95rem;">Pindai kode ini untuk melihat detail acara & RSVP langsung di ponselmu 🎉</p>
+      <button class="btn btn-cute" onclick="shareInvitation()">
+        <i class="fas fa-share-nodes me-2"></i>Bagikan Undangan
+      </button>
+      <div id="shareToast" class="mt-2 text-success fw-bold" style="opacity:0;transition:opacity .3s;font-size:.9rem;">✅ Link berhasil disalin!</div>
     </div>
   </div>
 </section>
