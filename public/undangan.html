@@ -295,6 +295,10 @@
 <script>
 AOS.init({duration:800, once:true});
 
+// QR Code
+const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(window.location.href);
+document.getElementById('qrImg').src = qrUrl;
+
 // Balloons
 const colors=['#ff7eb6','#a8e1ff','#ffe27a','#b6e5a8','#d8b6ff'];
 const bc=document.getElementById('balloons');
