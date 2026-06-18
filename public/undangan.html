@@ -32,6 +32,13 @@
     background:#fff; border-radius:30px; border:none;
     box-shadow:0 15px 40px rgba(58,174,224,.15);
   }
+  .qr-frame{
+    width:180px; height:180px; border-radius:20px;
+    border:4px dashed var(--pink-deep); padding:10px;
+    background:#fff; margin:0 auto;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .qr-frame img{width:100%; height:100%; border-radius:10px;}
   /* Cover */
   #cover{
     position:fixed; inset:0; z-index:9999;
@@ -198,6 +205,19 @@
   </div>
 </section>
 
+<!-- QR Code -->
+<section data-aos="fade-up">
+  <div class="section-title"><h2>Scan QR Code 📱</h2></div>
+  <div class="container" style="max-width:400px;">
+    <div class="card card-cute p-4 text-center">
+      <div class="qr-frame mb-3">
+        <img id="qrImg" src="" alt="QR Code Undangan" />
+      </div>
+      <p class="mb-0" style="color:#888; font-size:.95rem;">Pindai kode ini untuk melihat detail acara & RSVP langsung di ponselmu 🎉</p>
+    </div>
+  </div>
+</section>
+
 <!-- Gallery -->
 <section style="background:rgba(255,255,255,.5);" data-aos="fade-up">
   <div class="section-title"><h2>Galeri Foto 📸</h2></div>
@@ -274,6 +294,10 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script>
 AOS.init({duration:800, once:true});
+
+// QR Code
+const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(window.location.href);
+document.getElementById('qrImg').src = qrUrl;
 
 // Balloons
 const colors=['#ff7eb6','#a8e1ff','#ffe27a','#b6e5a8','#d8b6ff'];
