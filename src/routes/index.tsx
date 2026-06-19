@@ -4,10 +4,10 @@ import { useEffect } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Undangan Ulang Tahun Aurel ke-7" },
-      { name: "description", content: "Undangan ulang tahun Aurel ke-7 — 20 Juli 2026 di Bandung." },
-      { property: "og:title", content: "Undangan Ulang Tahun Aurel ke-7" },
-      { property: "og:description", content: "Yuk hadir di pesta ulang tahun Aurel yang ke-7!" },
+      { title: "Undangan Ulang Tahun Mikhayla Junindya ke-9" },
+      { name: "description", content: "Undangan ulang tahun Mikhayla Junindya ke-9 — 27 Juni 2026 di Playtopia, Summarecon Mall Bekasi 2." },
+      { property: "og:title", content: "Undangan Ulang Tahun Mikhayla Junindya ke-9" },
+      { property: "og:description", content: "Yuk hadir di pesta ulang tahun Mikhayla Junindya yang ke-9!" },
     ],
   }),
   component: Index,
